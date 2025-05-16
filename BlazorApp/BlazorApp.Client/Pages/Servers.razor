@@ -1,0 +1,19 @@
+﻿@page "/servers"
+@using BlazorApp.Shared
+@using BlazorApp.Shared.Services
+@inject IServersService ServersService
+
+<h3>Servers</h3>
+<button class="btn btn-primary" @onclick="Refresh">Refresh</button>
+<ul>
+    @foreach (var s in servers)
+    {
+        <li>@s.Name (@s.City) - @(s.IsOnline ? "Online" : "Offline")</li>
+    }
+</ul>
+
+@code {
+    private IEnumerable<Server> servers = Array.Empty<Server>();
+    protected override async Task OnInitializedAsync() => await Refresh();
+    private async Task Refresh() => servers = await ServersService.GetAllAsync();
+}

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BlazorApp.Shared;
+using Microsoft.EntityFrameworkCore;
 using ServerApi.Models;
 
 

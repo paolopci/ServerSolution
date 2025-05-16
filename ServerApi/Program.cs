@@ -1,6 +1,8 @@
+using BlazorApp.Shared.Services;
 using Microsoft.EntityFrameworkCore;
 using ServerApi.Data;
 using ServerApi.Models;
+using ServerApi.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,11 @@ builder.Services.AddDbContextFactory<ServerManagementContext>(options =>
 });
 
 builder.Services.AddControllers();
+
+// implemento services da shared project
+builder.Services.AddScoped<IServersService, ServersService>();
+
+
 
 // Repository
 builder.Services.AddScoped<IServersEFCoreRepository, ServersEFCoreRepository>();
